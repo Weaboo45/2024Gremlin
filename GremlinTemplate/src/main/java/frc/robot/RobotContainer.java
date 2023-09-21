@@ -9,10 +9,9 @@ package frc.robot;
 
 import java.util.Map;
 
-import static frc.robot.Constants.*;
+//import static frc.robot.Constants.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -25,7 +24,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -55,11 +53,11 @@ public class RobotContainer {
 
   /// SUBSYSTEMS ///
   private final Drivetrain drivetrain = new Drivetrain(m_tab);
+  private final YeetCannon yeet = new YeetCannon(m_tab);
 
 
   /// OI DEVICES / HARDWARE ///
   private final XboxController xbox = new XboxController(0);
-  private final Joystick stick = new Joystick(0);
 
   /// COMMANDS ///
   // Autonomous
@@ -67,9 +65,9 @@ public class RobotContainer {
 
   // Xbox controls
   private final DriveTank drivetrainXbox = new DriveTank(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftY());
+  private final Shooter yeetCannon = new Shooter(yeet, () -> xbox.getRightTriggerAxis());
   
   /// JOYSTICK BUTTONS ///
-  JoystickButton intakeGrab = new JoystickButton(stick, INTAKE_GRAB_BUTTON);
   
   /// SHUFFLEBOARD METHODS ///
   /**
@@ -116,6 +114,7 @@ public class RobotContainer {
    */
   private void configureInitialDefaultCommands() {
     drivetrain.setDefaultCommand(drivetrainXbox);
+    yeet.setDefaultCommand(yeetCannon);
   }
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
