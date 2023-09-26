@@ -20,9 +20,6 @@ public final class Constants {
     public static int PEAK_LIMIT = 40;
     public static int ENABLE_LIMIT = 30;
 
-    // Scissor lift motor
-    public static int LIFT_MOTOR = 14;
-
     // MEASUREMENTS
         // Drivetrain measurements
         public static double CENTER_TO_WHEEL_X = 21/2/39.37; // 21 in. to m

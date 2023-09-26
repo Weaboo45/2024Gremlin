@@ -152,4 +152,11 @@ public class Drivetrain extends SubsystemBase {
 
     drive.tankDrive(xSpeed, ySpeed);
   }
+
+  public void DriveArcade(double driveSpeed, double rotate) {
+    driveSpeed = MathUtil.applyDeadband(driveSpeed, SPEED_DEADBAND);
+    rotate = MathUtil.applyDeadband(rotate, ROTATION_DEADBAND);
+
+    drive.arcadeDrive(driveSpeed, rotate);
+  }
 }

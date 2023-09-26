@@ -65,10 +65,12 @@ public class RobotContainer {
 
   // Xbox controls
   private final DriveTank drivetrainXbox = new DriveTank(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftY());
+
   private final Shooter yeetCannon = new Shooter(yeet, () -> xbox.getRightTriggerAxis());
-  
-  /// JOYSTICK BUTTONS ///
-  
+
+  private final DriveArcade driveArcade = new DriveArcade(drivetrain, () -> xbox.getRightTriggerAxis() - xbox.getLeftTriggerAxis(),
+  () -> xbox.getRightX());
+    
   /// SHUFFLEBOARD METHODS ///
   /**
    * Use this command to define {@link Shuffleboard} buttons using a
@@ -86,6 +88,9 @@ public class RobotContainer {
 
     drivingStyleLayout.add("Logitech Bot Drive",
     new InstantCommand(() -> drivetrain.setDefaultCommand(drivetrainXbox), drivetrain));
+
+    drivingStyleLayout.add("Drive Triggers",
+    new InstantCommand(() -> drivetrain.setDefaultCommand(driveArcade), drivetrain));
 
     ShuffleboardLayout controllerLayout = m_tab.getLayout("Controller Vals", BuiltInLayouts.kGrid)
     .withPosition(4, 0).withSize(2, 6)
