@@ -65,11 +65,13 @@ public class RobotContainer {
 
   // Xbox controls
   private final DriveTank drivetrainXbox = new DriveTank(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftY());
-
-  private final Shooter yeetCannon = new Shooter(yeet, () -> xbox.getRightTriggerAxis());
-
-  private final DriveArcade driveArcade = new DriveArcade(drivetrain, () -> xbox.getRightTriggerAxis() - xbox.getLeftTriggerAxis(),
+  private final Shooter yeetCannon = new Shooter(yeet, () -> xbox.getRightBumper());
+  private final DriveTriggers driveTriggers = new DriveTriggers(drivetrain, () -> xbox.getRightTriggerAxis() - xbox.getLeftTriggerAxis(),
   () -> xbox.getRightX());
+  private final DriveSticks driveSticks = new DriveSticks(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX());
+
+  private final DriveCurvature driveCurvature = new DriveCurvature(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX(),
+  () -> xbox.getLeftBumperPressed());
     
   /// SHUFFLEBOARD METHODS ///
   /**
@@ -88,9 +90,13 @@ public class RobotContainer {
 
     drivingStyleLayout.add("Logitech Bot Drive",
     new InstantCommand(() -> drivetrain.setDefaultCommand(drivetrainXbox), drivetrain));
-
     drivingStyleLayout.add("Drive Triggers",
-    new InstantCommand(() -> drivetrain.setDefaultCommand(driveArcade), drivetrain));
+    new InstantCommand(() -> drivetrain.setDefaultCommand(driveTriggers), drivetrain));
+    drivingStyleLayout.add("Drive Sticks",
+    new InstantCommand(() -> drivetrain.setDefaultCommand(driveSticks), drivetrain));
+    drivingStyleLayout.add("Drive Curvature",
+    new InstantCommand(() -> drivetrain.setDefaultCommand(driveCurvature), drivetrain));
+
 
     ShuffleboardLayout controllerLayout = m_tab.getLayout("Controller Vals", BuiltInLayouts.kGrid)
     .withPosition(4, 0).withSize(2, 6)

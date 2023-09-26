@@ -8,22 +8,28 @@ import frc.robot.subsystems.YeetCannon;
 public class Shooter extends CommandBase{
     
     private YeetCannon yeet;
-    private Supplier<Double> speed;
+    private Supplier<Boolean> onOff;
+    private Double shootSpeed;
 
-    public Shooter(YeetCannon yeet, Supplier<Double> speed){
+    public Shooter(YeetCannon yeet, Supplier<Boolean> onOff){
         addRequirements(yeet);
         this.yeet = yeet;
-        this.speed = speed;
+        this.onOff = onOff;
     }
 
     @Override
     public void initialize(){
         yeet.configureMotorPower();
+        shootSpeed = 0.0;
     }
 
     @Override
     public void execute(){
-        double shootSpeed = speed.get();
+        
+        if(onOff.get()){
+            shootSpeed = 1.0;
+        }
+
         yeet.yeetCannon(shootSpeed);
     }
 
