@@ -157,7 +157,7 @@ public class Drivetrain extends SubsystemBase {
     speed = MathUtil.applyDeadband(speed, SPEED_DEADBAND);
     rotate = MathUtil.applyDeadband(rotate, ROTATION_DEADBAND);
 
-    drive.arcadeDrive(speed, rotate);
+    drive.arcadeDrive(speed, rotate, IS_ARCADEDRIVE_SQUARED);
   }
 
   public void DriveCurvature(double speed, double rotate, boolean onOff){
