@@ -22,7 +22,6 @@ public class DriveCurvature extends CommandBase {
     // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drivetrain.configureMotorPower();
     curveOnOff = true;
   }
 
@@ -41,7 +40,7 @@ public class DriveCurvature extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {;
-    drivetrain.DriveCurvature(0,0, false);
+    drivetrain.DriveCurvature(0,0, curveOnOff);
   }
 
   // Returns true when the command should end.

@@ -49,12 +49,10 @@ public class RobotContainer {
   /// SHUFFLEBOARD TAB ///
   private final ShuffleboardTab m_tab = Shuffleboard.getTab("Competition Robot");
   private final SendableChooser<Command> m_chooser = new SendableChooser<Command>();
-  
 
   /// SUBSYSTEMS ///
   private final Drivetrain drivetrain = new Drivetrain(m_tab);
   private final YeetCannon yeet = new YeetCannon(m_tab);
-
 
   /// OI DEVICES / HARDWARE ///
   private final XboxController xbox = new XboxController(0);
@@ -69,7 +67,6 @@ public class RobotContainer {
   private final DriveTriggers driveTriggers = new DriveTriggers(drivetrain, () -> xbox.getRightTriggerAxis() - xbox.getLeftTriggerAxis(),
   () -> xbox.getRightX());
   private final DriveSticks driveSticks = new DriveSticks(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX());
-
   private final DriveCurvature driveCurvature = new DriveCurvature(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX(),
   () -> xbox.getLeftBumperPressed());
     
@@ -134,7 +131,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
   }
   
   /**

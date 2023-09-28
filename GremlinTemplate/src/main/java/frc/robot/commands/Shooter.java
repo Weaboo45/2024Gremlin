@@ -19,7 +19,6 @@ public class Shooter extends CommandBase{
 
     @Override
     public void initialize(){
-        yeet.configureMotorPower();
         shootSpeed = 0.0;
     }
 
@@ -28,6 +27,8 @@ public class Shooter extends CommandBase{
         
         if(onOff.get()){
             shootSpeed = 1.0;
+        } else {
+            shootSpeed = 0.0;
         }
 
         yeet.yeetCannon(shootSpeed);

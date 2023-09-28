@@ -36,8 +36,8 @@ public final class Constants {
         public static int BACK_RIGHT_TALON_ID = 2;
 
         //YeetCannon motor ID ports
-        public static int RIGHT_CANNON_ID = 5;
-        public static int LEFT_CANNON_ID = 6;
+        public static int RIGHT_CANNON_ID = 7;
+        public static int LEFT_CANNON_ID = 5;
 
     // Drivetrain multipliers
     public static double ROTATION_DEADBAND = .15;   //.25

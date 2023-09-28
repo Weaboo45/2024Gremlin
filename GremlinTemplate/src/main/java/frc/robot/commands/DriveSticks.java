@@ -20,7 +20,6 @@ public class DriveSticks extends CommandBase{
     // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drivetrain.configureMotorPower();
   }
 
   @Override
