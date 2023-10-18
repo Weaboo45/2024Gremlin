@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.DriveCommands;
 
 import java.util.function.Supplier;
 
@@ -14,7 +14,6 @@ import frc.robot.subsystems.Drivetrain;
 
 public class DriveTank extends CommandBase {
   /*
-   * Creates a new DriveMecanum.
    */
 
   private Drivetrain drivetrain;

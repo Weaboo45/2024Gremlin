@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.commands.*;
+import frc.robot.commands.DriveCommands.*;
 import frc.robot.subsystems.*;
 
 /**
@@ -53,6 +54,7 @@ public class RobotContainer {
   /// SUBSYSTEMS ///
   private final Drivetrain drivetrain = new Drivetrain(m_tab);
   private final YeetCannon yeet = new YeetCannon(m_tab);
+  private final InTake inTake = new InTake(m_tab);
 
   /// OI DEVICES / HARDWARE ///
   private final XboxController xbox = new XboxController(0);
@@ -62,11 +64,21 @@ public class RobotContainer {
   private final SimpleAutonomous simpleAuto = new SimpleAutonomous(drivetrain);
 
   // Xbox controls
-  private final DriveTank drivetrainXbox = new DriveTank(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftY());
+
+  // Other Commands
+
   private final Shooter yeetCannon = new Shooter(yeet, () -> xbox.getRightBumper());
+
+  private final IntakeBall intakeBall = new IntakeBall(inTake, () -> xbox.getAButton(), () -> xbox.getBButton());
+
+  // Driving Styles
+  private final DriveTank driveTank = new DriveTank(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftY());
+
   private final DriveTriggers driveTriggers = new DriveTriggers(drivetrain, () -> xbox.getRightTriggerAxis() - xbox.getLeftTriggerAxis(),
   () -> xbox.getRightX());
+
   private final DriveSticks driveSticks = new DriveSticks(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX());
+
   private final DriveCurvature driveCurvature = new DriveCurvature(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX(),
   () -> xbox.getLeftBumperPressed());
     
@@ -86,7 +98,7 @@ public class RobotContainer {
     .withProperties(Map.of("label position", "BOTTOM"));
 
     drivingStyleLayout.add("Logitech Bot Drive",
-    new InstantCommand(() -> drivetrain.setDefaultCommand(drivetrainXbox), drivetrain));
+    new InstantCommand(() -> drivetrain.setDefaultCommand(driveTank), drivetrain));
     drivingStyleLayout.add("Drive Triggers",
     new InstantCommand(() -> drivetrain.setDefaultCommand(driveTriggers), drivetrain));
     drivingStyleLayout.add("Drive Sticks",
@@ -121,8 +133,9 @@ public class RobotContainer {
    * Default commands are ran whenever no other commands are using a specific subsystem.
    */
   private void configureInitialDefaultCommands() {
-    drivetrain.setDefaultCommand(drivetrainXbox);
+    drivetrain.setDefaultCommand(driveCurvature);
     yeet.setDefaultCommand(yeetCannon);
+    inTake.setDefaultCommand(intakeBall);
   }
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
