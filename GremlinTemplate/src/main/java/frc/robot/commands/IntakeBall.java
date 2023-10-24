@@ -5,14 +5,16 @@ import java.util.function.Supplier;
 import frc.robot.subsystems.InTake;
 
 public class IntakeBall extends CommandBase{
-    private InTake inTake;
+    private InTake inTakeSub;
     private Supplier<Boolean> top, bottom;
     private Double topSpeed, bottomSpeed;
 
-    public  IntakeBall(InTake intake, Supplier<Boolean> top, Supplier<Boolean> bottom){
-        addRequirements(inTake);
+    public  IntakeBall(InTake inTakeSub, Supplier<Boolean> top, Supplier<Boolean> bottom){
+        addRequirements(inTakeSub);
+        //addRequirements(inTakeSub);
         this.top = top;
         this.bottom = bottom;
+        this.inTakeSub = inTakeSub;
     }
 
     @Override
@@ -25,26 +27,28 @@ public class IntakeBall extends CommandBase{
     public void execute(){
         
         if(top.get()){
-            topSpeed = 1.0;
+            topSpeed = 0.5;
+            inTakeSub.moveTopIntake(topSpeed);
         } else {
             topSpeed = 0.0;
+            inTakeSub.moveTopIntake(topSpeed);
         }
-
-        inTake.moveTopIntake(topSpeed);
+        
 
         if(bottom.get()){
-            bottomSpeed = 1.0;
+            bottomSpeed = 0.5;
+            inTakeSub.moveLowerIntake(bottomSpeed);
         } else {
             bottomSpeed = 0.0;
+            inTakeSub.moveLowerIntake(bottomSpeed);
         }
 
-        inTake.moveLowerIntake(bottomSpeed);
     }
 
     @Override
     public void end(boolean interrupted){
-        inTake.moveLowerIntake(0);
-        inTake.moveTopIntake(0);
+        inTakeSub.moveLowerIntake(0);
+        inTakeSub.moveTopIntake(0);
     }
 
     @Override

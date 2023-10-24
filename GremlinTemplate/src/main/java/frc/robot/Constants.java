@@ -39,6 +39,10 @@ public final class Constants {
         public static int RIGHT_CANNON_ID = 7;
         public static int LEFT_CANNON_ID = 5;
 
+        //Intake Motor ID ports
+        public static int TOP_INTAKE_MOTOR_ID = 11;
+        public static int LOWER_INTAKE_MOTOR_ID = 12;
+
     // Drivetrain multipliers
     public static double ROTATION_DEADBAND = .15;   //.25
     public static double STRAFING_DEADBAND = .15;  //.75

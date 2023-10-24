@@ -69,7 +69,7 @@ public class RobotContainer {
 
   private final Shooter yeetCannon = new Shooter(yeet, () -> xbox.getRightBumper());
 
-  private final IntakeBall intakeBall = new IntakeBall(inTake, () -> xbox.getAButton(), () -> xbox.getBButton());
+  private final IntakeBall intakeBall = new IntakeBall(inTake, () -> xbox.getBButton(), () -> xbox.getAButton());
 
   // Driving Styles
   private final DriveTank driveTank = new DriveTank(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftY());
@@ -79,7 +79,7 @@ public class RobotContainer {
 
   private final DriveSticks driveSticks = new DriveSticks(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX());
 
-  private final DriveCurvature driveCurvature = new DriveCurvature(drivetrain, () -> xbox.getRightY(), () -> xbox.getLeftX(),
+  private final DriveCurvature driveCurvature = new DriveCurvature(drivetrain, () -> xbox.getLeftY(), () -> xbox.getRightX(),
   () -> xbox.getLeftBumperPressed());
     
   /// SHUFFLEBOARD METHODS ///

@@ -12,9 +12,11 @@ public class InTake extends SubsystemBase{
     private ShuffleboardTab tab;
 
     public InTake (ShuffleboardTab tab){
-
         topIntake = new WPI_VictorSPX(TOP_INTAKE_MOTOR_ID);
         lowerIntake = new WPI_VictorSPX(LOWER_INTAKE_MOTOR_ID);
+
+        lowerIntake.setInverted(true);
+        topIntake.setInverted(true);
     
         this.tab = tab;
     
